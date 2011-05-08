@@ -1,0 +1,14 @@
+--- libsbsms-1.7.0/src/mp3.cpp.orig	2011-05-08 13:43:54.403499365 +0200
++++ libsbsms-1.7.0/src/mp3.cpp	2011-05-08 13:53:57.467865794 +0200
+@@ -127,9 +127,9 @@
+ 		    struct mad_stream *stream,
+ 		    struct mad_frame *frame)
+ {
+-  fprintf(stderr, "decoding error 0x%04x (%s) at stream frame %u\n",
++  fprintf(stderr, "decoding error 0x%04x (%s) at stream frame offset %u\n",
+ 	  stream->error, mad_stream_errorstr(stream),
+-	  (unsigned int)stream->this_frame );
++	  (unsigned int)(stream->buffer - stream->this_frame));
+ 
+   /* return MAD_FLOW_BREAK here to stop decoding (and propagate an error) */
+   return MAD_FLOW_CONTINUE;
