@@ -1,0 +1,52 @@
+--- libsbsms-1.7.0/src/buffer.h.orig	2008-11-02 02:58:45.000000000 +0100
++++ libsbsms-1.7.0/src/buffer.h	2011-05-06 21:36:16.969710909 +0200
+@@ -6,6 +6,8 @@
+ #include "grain.h"
+ #include "trackpoint.h"
+ #include <list>
++#include <cstdlib>
++#include <cstring>
+ using namespace std;
+ 
+ namespace _sbsms_ {
+--- libsbsms-1.7.0/src/grain.cpp.orig	2008-11-07 01:10:27.000000000 +0100
++++ libsbsms-1.7.0/src/grain.cpp	2011-05-06 21:40:29.936386047 +0200
+@@ -4,6 +4,8 @@
+ #include "defs.h"
+ #include "real.h"
+ 
++#include <cstdlib>
++#include <cstring>
+ #include <map>
+ using namespace std;
+ using namespace _sbsms_;
+--- libsbsms-1.7.0/src/convert.cpp.orig	2008-11-13 06:34:52.000000000 +0100
++++ libsbsms-1.7.0/src/convert.cpp	2011-05-06 22:41:05.309841105 +0200
+@@ -143,7 +143,7 @@
+     si.rs = resampler;
+     sbsmser = sbsms_create(&samplesCB,&stretchCBLinear,&ratioCBLinear,channels,quality,bPreAnalyze,!bAnalyzeOnly);
+   }
+-  
++  long samplesOut;
+   if(bPreAnalyze && !bSynthesizeOnly) {
+ #ifdef BWAV
+     decoderPre = import(filenameIn);
+@@ -174,7 +174,7 @@
+     stretch2 = 1.0/stretch0;
+   else
+     stretch2 = log(stretch1/stretch0)/(stretch1-stretch0);
+-  long samplesOut = samplesToProcess * stretch2;
++  samplesOut = samplesToProcess * stretch2;
+   si.samplesToProcess = samplesToProcess;
+   si.samplesToGenerate = samplesOut;
+   si.stretch0 = stretch0;
+--- libsbsms-1.7.0/src/mp3.cpp.orig	2008-11-02 02:58:36.000000000 +0100
++++ libsbsms-1.7.0/src/mp3.cpp	2011-05-08 07:43:28.443823757 +0200
+@@ -7,6 +7,7 @@
+ #include "import.h"
+ #include "audiobuffer.h"
+ 
++#include <cstring>
+ #include <iostream>
+ #include <fstream>
+ 

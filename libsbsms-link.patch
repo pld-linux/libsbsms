@@ -1,0 +1,10 @@
+--- libsbsms-1.7.0/src/Makefile.am.orig	2011-05-08 07:43:46.687157704 +0200
++++ libsbsms-1.7.0/src/Makefile.am	2011-05-08 07:50:51.983838611 +0200
+@@ -7,6 +7,7 @@
+ libsbsms_la_SOURCES = pitch.cpp peak.cpp sms.cpp track.cpp trackpoint.cpp utils.cpp audio.cpp resample.cpp sbsms.cpp fft.cpp grain.cpp buffer.cpp subband.cpp audio.h buffer.h fft.h utils.h defs.h peak.h trackpoint.h grain.h pitch.h real.h resample.h ../include/sbsms.h sms.h subband.h track.h
+ 
+ libsbsms_la_LDFLAGS = -version-info @SHARED_VERSION_INFO@ @SHLIB_VERSION_ARG@
++libsbsms_la_LIBADD = -lpthread
+ 
+ if ENABLE_PORTAUDIO
+ if ENABLE_WX
