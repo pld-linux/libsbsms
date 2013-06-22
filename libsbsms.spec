@@ -15,6 +15,7 @@ Patch0:		%{name}-opts.patch
 Patch1:		%{name}-gcc.patch
 Patch2:		%{name}-link.patch
 Patch3:		%{name}-mad.patch
+Patch4:		%{name}-am.patch
 URL:		http://sbsms.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake >= 1.5
@@ -78,6 +79,7 @@ Oparty na wxWidgets odtwarzacz wykorzystujący libsbsms.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 %{__libtoolize}
