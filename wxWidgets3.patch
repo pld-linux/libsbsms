@@ -1,0 +1,32 @@
+--- libsbsms-1.7.0/configure.in~	2014-01-18 18:25:24.000000000 +0100
++++ libsbsms-1.7.0/configure.in	2014-01-18 18:27:19.885407481 +0100
+@@ -177,6 +177,9 @@
+ 
+    wx_version=`${WX_CONFIG} --version`
+    case "${wx_version}" in
++	3.*)
++	echo "Great, you're using wxWidgets ${wx_version}!"
++	;;
+ 	2.8.*)
+ 	echo "Great, you're using wxWidgets ${wx_version}!"
+ 	;;
+--- libsbsms-1.7.0/src/wxplayerframe.cpp~	2008-11-13 06:35:51.000000000 +0100
++++ libsbsms-1.7.0/src/wxplayerframe.cpp	2014-01-18 18:29:18.292073291 +0100
+@@ -18,7 +18,7 @@
+ 
+ void wxPlayerFrame::OnOpen(wxCommandEvent& WXUNUSED(event))
+ {
+-  wxFileDialog dlg(this, wxT("Choose a file"), wxT("."), wxT(""), wxT("All filetypes (*.sbsms;*.mp3;*.wav;*.aif;*.aiff;*.pcm)|*.sbsms;*.mp3;*.wav;*.aif;*.aiff;*.pcm"),wxOPEN);
++  wxFileDialog dlg(this, wxT("Choose a file"), wxT("."), wxT(""), wxT("All filetypes (*.sbsms;*.mp3;*.wav;*.aif;*.aiff;*.pcm)|*.sbsms;*.mp3;*.wav;*.aif;*.aiff;*.pcm"),wxFD_OPEN);
+   if(dlg.ShowModal() == wxID_OK) {
+     wxString pathStr = dlg.GetPath();
+     wxFileName path(pathStr);
+@@ -50,7 +50,7 @@
+ void wxPlayerFrame::OnSave(wxCommandEvent& WXUNUSED(event))
+ {
+   if(openFileName.Cmp(wxT("")) != 0) {
+-    wxFileDialog dlg(this, wxT("Choose a file"), wxT("."), wxT(""), wxT("*.wav"),wxSAVE|wxOVERWRITE_PROMPT);
++    wxFileDialog dlg(this, wxT("Choose a file"), wxT("."), wxT(""), wxT("*.wav"),wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
+     if(dlg.ShowModal() == wxID_OK) {
+       wxString pathStr = dlg.GetPath();
+       wxFileName path(pathStr);
