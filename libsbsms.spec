@@ -6,7 +6,7 @@ Summary:	C++ library for high quality time stretching and pitch scaling
 Summary(pl.UTF-8):	Biblioteka C++ do wysokiej jakości zmiany szybkości i wysokości dźwięku
 Name:		libsbsms
 Version:	1.7.0
-Release:	5
+Release:	6
 License:	GPL v2
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/sbsms/%{name}-%{version}.tar.gz
@@ -26,7 +26,7 @@ BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	portaudio-devel >= 19
 BuildRequires:	pkgconfig
-%{?with_wx:BuildRequires:	wxGTK2-unicode-devel >= 2.8}
+%{?with_wx:BuildRequires:	wxGTK3-unicode-devel >= 2.8}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -90,7 +90,7 @@ Oparty na wxWidgets odtwarzacz wykorzystujący libsbsms.
 %{__autoheader}
 %{__automake}
 %configure \
-	WX_CONFIG=/usr/bin/wx-gtk2-unicode-config \
+	WX_CONFIG=/usr/bin/wx-gtk3-unicode-config \
 	--enable-mp3 \
 	--enable-multithreaded \
 	--enable-portaudio \
